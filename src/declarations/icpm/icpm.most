@@ -1,0 +1,32 @@
+type Canister/2 = Canister;
+type Deployment/2 = Deployment;
+type Environment/3 = Environment;
+type Event/2 = Event;
+type Identity/2 = Identity;
+type Job/3 = Job;
+type LoginAttempt/1 = LoginAttempt;
+type Project/2 = Project;
+type User/2 = User;
+type Worker/3 = Worker;
+actor {
+  stable var everLoggedIn : Text;
+  stable var nextCanisterId : Nat;
+  stable var nextDeploymentId : Nat;
+  stable var nextEnvironmentId : Nat;
+  stable var nextEventId : Nat;
+  stable var nextIdentityId : Nat;
+  stable var nextJobId : Nat;
+  stable var nextProjectId : Nat;
+  stable var nextUserId : Nat;
+  stable var nextWorkerId : Nat;
+  stable var theCanisters : [Canister/2];
+  stable var theDeployments : [Deployment/2];
+  stable var theEnvironments : [Environment/3];
+  stable var theEvents : [Event/2];
+  stable var theIdentities : [Identity/2];
+  stable var theJobs : [Job/3];
+  stable var theLoginAttempts : [LoginAttempt/1];
+  stable var theProjects : [Project/2];
+  stable var theUsers : [User/2];
+  stable var theWorkers : [Worker/3]
+};

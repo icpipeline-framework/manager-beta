@@ -1,0 +1,502 @@
+type Worker__1 = 
+ record {
+   category: text;
+   creatorId: int;
+   dateCreated: int;
+   description: text;
+   dfxReplicaType: text;
+   dnsName: text;
+   id: int;
+   iiEnabled: text;
+   lastDeploymentId: int;
+   lastTouch: int;
+   lastUpdated: int;
+   name: text;
+   privateIp: text;
+   publicIp: text;
+   status: text;
+   ttydHttpsCount: int;
+   ttydHttpsEnabled: text;
+   uniqueId: text;
+ };
+type Worker = 
+ record {
+   category: text;
+   creatorId: int;
+   dateCreated: int;
+   description: text;
+   dfxReplicaType: text;
+   dnsName: text;
+   id: int;
+   iiEnabled: text;
+   lastDeploymentId: int;
+   lastTouch: int;
+   lastUpdated: int;
+   name: text;
+   privateIp: text;
+   publicIp: text;
+   status: text;
+   ttydHttpsCount: int;
+   ttydHttpsEnabled: text;
+   uniqueId: text;
+ };
+type User__1 = 
+ record {
+   active: bool;
+   apiToken: text;
+   cellPhone: text;
+   creatorId: int;
+   dateCreated: int;
+   email: text;
+   hashPass: text;
+   id: int;
+   internetId: text;
+   lastUpdated: int;
+   name: text;
+ };
+type User = 
+ record {
+   active: bool;
+   apiToken: text;
+   cellPhone: text;
+   creatorId: int;
+   dateCreated: int;
+   email: text;
+   hashPass: text;
+   id: int;
+   internetId: text;
+   lastUpdated: int;
+   name: text;
+ };
+type UplinkResponse = 
+ record {
+   canisterProfiles: vec Canister;
+   deploymentObject: Deployment;
+   environmentObject: Environment;
+   identityObject: Identity;
+   jobObject: Job;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+   workerObject: Worker__1;
+ };
+type TtydHttpsEnableDisableResponse = 
+ record {
+   jobObject: Job;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type Project__1 = 
+ record {
+   category: text;
+   creatorId: int;
+   dateCreated: int;
+   description: text;
+   dfxIdentities: vec int;
+   id: int;
+   lastUpdated: int;
+   name: text;
+   projectRepo: text;
+ };
+type Project = 
+ record {
+   category: text;
+   creatorId: int;
+   dateCreated: int;
+   description: text;
+   dfxIdentities: vec int;
+   id: int;
+   lastUpdated: int;
+   name: text;
+   projectRepo: text;
+ };
+type ManagePrincipalResponse = 
+ record {
+   listOfManagerPrincipals: vec principal;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type ManageIdentityResponse = 
+ record {
+   identityObject: Identity;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type ManageEnvironmentResponse = 
+ record {
+   environmentObject: Environment;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type ManageCanisterResponse = 
+ record {
+   canisterObject: Canister;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type LoginResponse = 
+ record {
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type LoginAttempt = 
+ record {
+   loginClient: text;
+   loginHash: text;
+   loginIp: text;
+   timestamp: int;
+ };
+type Job__1 = 
+ record {
+   dateCreated: int;
+   environmentId: int;
+   id: int;
+   jobType: text;
+   lastUpdated: int;
+   refId: int;
+   refType: text;
+   status: text;
+   workerId: int;
+ };
+type Job = 
+ record {
+   dateCreated: int;
+   environmentId: int;
+   id: int;
+   jobType: text;
+   lastUpdated: int;
+   refId: int;
+   refType: text;
+   status: text;
+   workerId: int;
+ };
+type Identity__1 = 
+ record {
+   category: text;
+   creatorId: int;
+   dateCreated: int;
+   description: text;
+   id: int;
+   identityPem: text;
+   lastUpdated: int;
+   name: text;
+   "principal": text;
+   profileWalletId: text;
+ };
+type Identity = 
+ record {
+   category: text;
+   creatorId: int;
+   dateCreated: int;
+   description: text;
+   id: int;
+   identityPem: text;
+   lastUpdated: int;
+   name: text;
+   "principal": text;
+   profileWalletId: text;
+ };
+type Event__1 = 
+ record {
+   creatorId: int;
+   dateCreated: int;
+   deploymentId: int;
+   environmentId: int;
+   eventText: text;
+   eventType: text;
+   id: int;
+   jobId: int;
+   lastUpdated: int;
+   localTime: int;
+   mainRefType: text;
+   projectId: int;
+   workerId: int;
+ };
+type Event = 
+ record {
+   creatorId: int;
+   dateCreated: int;
+   deploymentId: int;
+   environmentId: int;
+   eventText: text;
+   eventType: text;
+   id: int;
+   jobId: int;
+   lastUpdated: int;
+   localTime: int;
+   mainRefType: text;
+   projectId: int;
+   workerId: int;
+ };
+type Environment__1 = 
+ record {
+   creatorId: int;
+   dateCreated: int;
+   deploymentNetwork: text;
+   description: text;
+   environmentType: text;
+   id: int;
+   identityId: int;
+   lastUpdated: int;
+   name: text;
+   projectId: int;
+   projectRepoBranch: text;
+   workerId: int;
+ };
+type Environment = 
+ record {
+   creatorId: int;
+   dateCreated: int;
+   deploymentNetwork: text;
+   description: text;
+   environmentType: text;
+   id: int;
+   identityId: int;
+   lastUpdated: int;
+   name: text;
+   projectId: int;
+   projectRepoBranch: text;
+   workerId: int;
+ };
+type DownloadAllLogResponse = 
+ record {
+   canisters: vec Canister;
+   deployments: vec Deployment;
+   events: vec Event__1;
+   jobs: vec Job;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type DownloadAllConfigResponse = 
+ record {
+   canisterProfiles: vec Canister;
+   environments: vec Environment;
+   identities: vec Identity;
+   msg: text;
+   projects: vec Project__1;
+   responseStatus: text;
+   timeStamp: int;
+   users: vec User__1;
+ };
+type Deployment__1 = 
+ record {
+   creatorId: int;
+   dateCreated: int;
+   deploymentNotes: text;
+   environmentId: int;
+   executeFinishTime: int;
+   executeStartTime: int;
+   id: int;
+   identityId: int;
+   lastUpdated: int;
+   projectId: int;
+   projectRepo: text;
+   projectRepoBranch: text;
+   status: text;
+ };
+type Deployment = 
+ record {
+   creatorId: int;
+   dateCreated: int;
+   deploymentNotes: text;
+   environmentId: int;
+   executeFinishTime: int;
+   executeStartTime: int;
+   id: int;
+   identityId: int;
+   lastUpdated: int;
+   projectId: int;
+   projectRepo: text;
+   projectRepoBranch: text;
+   status: text;
+ };
+type CreateIiEnableJobResponse = 
+ record {
+   jobObject: Job;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type CreateDeploymentResponse = 
+ record {
+   deploymentObject: Deployment;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type CompleteWorkerResponse = 
+ record {
+   environmentObject: Environment;
+   latestDeploymentObject: Deployment;
+   latestJobObject: Job;
+   msg: text;
+   projectObject: Project__1;
+   responseStatus: text;
+   timeStamp: int;
+   workerObject: Worker__1;
+ };
+type CompleteProjectResponse = 
+ record {
+   environmentObjects: vec Environment;
+   msg: text;
+   projectObject: Project__1;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type CompleteJobResponse = 
+ record {
+   jobObject: Job;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type CompleteIdentityResponse = 
+ record {
+   environmentObjects: vec Environment;
+   identityObject: Identity;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type CompleteEnvironmentResponse = 
+ record {
+   canisterProfiles: vec Canister;
+   environmentObject: Environment;
+   identityObject: Identity;
+   latestDeploymentObject: Deployment;
+   msg: text;
+   projectObject: Project__1;
+   responseStatus: text;
+   timeStamp: int;
+   workerObject: Worker__1;
+ };
+type CompleteDeploymentResponse = 
+ record {
+   canisterObjects: vec Canister;
+   deploymentObject: Deployment;
+   environmentObject: Environment;
+   eventObjects: vec Event__1;
+   jobObject: Job;
+   msg: text;
+   projectObject: Project__1;
+   responseStatus: text;
+   timeStamp: int;
+   workerObject: Worker__1;
+ };
+type CompleteDashboardStats = 
+ record {
+   deploymentsCount: nat;
+   deploymentsCountLastDay: nat;
+   environmentsActive: nat;
+   environmentsCount: nat;
+   eventsCount: nat;
+   eventsCountLast30: nat;
+   msg: text;
+   projectsActive: nat;
+   projectsCount: nat;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type CompleteCanisterResponse = 
+ record {
+   canisterObject: Canister;
+   lastDeploymentObject: Deployment;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+ };
+type Canister__1 = 
+ record {
+   canisterId: text;
+   canisterName: text;
+   canisterNetwork: text;
+   canisterType: text;
+   category: text;
+   creatorId: int;
+   dateCreated: int;
+   description: text;
+   dfxJson: text;
+   environmentId: int;
+   id: int;
+   identityId: int;
+   lastDeploymentId: int;
+   lastUpdated: int;
+   name: text;
+   projectId: int;
+ };
+type CanisterStatusResponse = 
+ record {
+   everLoggedIn: text;
+   msg: text;
+   responseStatus: text;
+   timeStamp: int;
+   uptime: int;
+ };
+type Canister = 
+ record {
+   canisterId: text;
+   canisterName: text;
+   canisterNetwork: text;
+   canisterType: text;
+   category: text;
+   creatorId: int;
+   dateCreated: int;
+   description: text;
+   dfxJson: text;
+   environmentId: int;
+   id: int;
+   identityId: int;
+   lastDeploymentId: int;
+   lastUpdated: int;
+   name: text;
+   projectId: int;
+ };
+service : {
+  addManagerPrincipalMain: (text, text, principal) -> (LoginResponse);
+  authenticateMain: (LoginAttempt, text) -> (LoginResponse);
+  checkPrincipalMain: () -> (int) query;
+  createDeploymentMain: (text, Environment__1) -> (CreateDeploymentResponse);
+  createIiEnableJob: (text, int) -> (CreateIiEnableJobResponse);
+  getCanisterStatus: () -> (CanisterStatusResponse) query;
+  getCompleteCanisterMain: (text, int) -> (CompleteCanisterResponse) query;
+  getCompleteDashboardStats: (text) -> (CompleteDashboardStats) query;
+  getCompleteDeploymentMain: (text, int) ->
+   (CompleteDeploymentResponse) query;
+  getCompleteEnvironmentMain: (text, int) ->
+   (CompleteEnvironmentResponse) query;
+  getCompleteIdentityMain: (text, int) -> (CompleteIdentityResponse) query;
+  getCompleteJobMain: (text, int) -> (CompleteJobResponse) query;
+  getCompleteProjectMain: (text, int) -> (CompleteProjectResponse) query;
+  getCompleteWorkerMain: (text, int) -> (CompleteWorkerResponse) query;
+  getICPMConfigDownload: (text, text) -> (DownloadAllConfigResponse);
+  getICPMLogDownload: (text, text) -> (DownloadAllLogResponse);
+  getListOfCanisters: (text, text) -> (vec Canister__1) query;
+  getListOfDeployments: (text, text) -> (vec Deployment__1) query;
+  getListOfEnvironments: (text, text) -> (vec Environment__1) query;
+  getListOfEvents: (text, text) -> (vec Event) query;
+  getListOfIdentities: (text, text) -> (vec Identity__1) query;
+  getListOfJobs: (text, text) -> (vec Job__1) query;
+  getListOfProjects: (text, text) -> (vec Project) query;
+  getListOfUsers: (text, text) -> (vec User) query;
+  getListOfWorkers: (text, text) -> (vec Worker) query;
+  manageCanisterMain: (text, Canister__1) -> (ManageCanisterResponse);
+  manageDeploymentMain: (text, Deployment__1) -> (text);
+  manageEnvironmentMain: (text, Environment__1) ->
+   (ManageEnvironmentResponse);
+  manageEventMain: (text, Event) -> (text);
+  manageIdentityMain: (text, Identity__1) -> (ManageIdentityResponse);
+  manageJobMain: (text, Job__1) -> (text);
+  managePrincipalsMain: (text, text, text) -> (ManagePrincipalResponse);
+  manageProjectMain: (text, Project) -> (CompleteProjectResponse);
+  manageUserMain: (text, User) -> (text);
+  manageWorkerMain: (text, Worker) -> (text);
+  ttydHttpsEnableDisable: (text, int) -> (TtydHttpsEnableDisableResponse);
+  workerUplink: (text, Worker) -> (UplinkResponse);
+}

@@ -1,0 +1,37 @@
+{
+  "canisters": {
+    "icpm": {
+      "main": "src/icpm/main.mo",
+      "type": "motoko"
+    },
+    "icpm_assets": {
+      "dependencies": [
+        "icpm"
+      ],
+      "frontend": {
+        "entrypoint": "src/icpm_assets/assets/index.html"
+      },
+      "source": [
+        "src/icpm_assets/assets",
+        "dist/icpm_assets/"
+      ],
+      "type": "assets",
+      "initialization_values": {
+          "memory_allocation": "1GB"
+      }
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
