@@ -107,7 +107,7 @@ const EnvironmentCard = (props) => {
       
               <Button key={1} onClick={() => { props.changeStateAgent()}} variant="contained" sx={{ mb:2, width:"100%" }}>
                     
-              <SettingsSystemDaydreamIcon sx={{mr:1}}/> Manage Environment
+              <SettingsSystemDaydreamIcon sx={{mr:1}}/> Edit This Environment Profile
               
               </Button>
             ] ;

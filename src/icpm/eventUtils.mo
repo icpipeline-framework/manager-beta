@@ -1,4 +1,5 @@
 import Array "mo:base/Array";
+import Buffer "mo:base/Buffer";
 import Nat "mo:base/Nat";
 import Int = "mo:base/Int";
 import Time = "mo:base/Time";
@@ -69,7 +70,22 @@ module {
       }; // end newEvent declaration
 
       // then I add a new one to the array
-      return Array.append<Event>(theEvents, [newEvent]);
+
+      // going to convert to Buffer and back as append is deprecated
+
+      let theEventsBuffer : Buffer.Buffer<Event> = Buffer.Buffer(theEvents.size());
+        
+      for (x in theEvents.vals()) {
+        
+          theEventsBuffer.add(x);
+        
+      };
+    
+      theEventsBuffer.add(newEvent);
+
+      return theEventsBuffer.toArray();
+
+      
     } else {
       // TODO
       // then I thought there was something to do and there is nothing and found nothing ... bad
@@ -82,8 +98,8 @@ module {
 
 
       var foundEvents = false;
-      var theseEvents :[Event] = [];
-
+      
+      var theseEvents : Buffer.Buffer<Event> = Buffer.Buffer(0);
 
       
       let theEventsNew: [Event] = Array.map<Event, Event>(
@@ -93,7 +109,8 @@ module {
           
           if (origEvent.deploymentId == theDeploymentId ) {
             foundEvents := true;
-            theseEvents :=  Array.append<Event>(theseEvents, [origEvent]);
+            theseEvents.add (origEvent);
+
           }; // end if this is the same id as what was passed to us
           origEvent
         } // end generic subfunction
@@ -101,7 +118,7 @@ module {
 
 
 
-    return theseEvents;
+    return theseEvents.toArray();
     
   };// end getEventsByDeploymentId
 
@@ -146,7 +163,8 @@ module {
       var thirtyMinAgo : Int = now - (30 * 60 * 1000 * 1000000) ;
 
 
-      var theseEvents :[Event] = [];
+      
+      var theseEvents : Buffer.Buffer<Event> = Buffer.Buffer(0);
 
       var thisEventsCount : Int = theEvents.size() ;
 
@@ -160,13 +178,13 @@ module {
               foundEvents := true;
               
             
-              theseEvents := Array.append<Event>(theseEvents, [origEvent]);
+              theseEvents.add (origEvent);
           }; // end if this count is < 30
             origEvent
         } // end generic subfunction
       ); // end Array Map
 
-    return theseEvents;
+    return theseEvents.toArray();
     
   };// end getEventsByDeploymentId
 

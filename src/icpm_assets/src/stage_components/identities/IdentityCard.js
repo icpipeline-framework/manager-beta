@@ -69,7 +69,9 @@ const IdentityCard = (props) => {
           
             <GridCardListItem title="Name" value={identity.name}/>
             <GridCardListItem title="Last Updated" value={identity.lastUpdated}  itemType="date-icNano"/>
+            {/*
             <GridCardListItem title="Category" value={identity.category}/>
+            */}
             <GridCardListItem title="Description" value={identity.description}/>
             <GridCardListItem title="Principal" value={identity.principal}/>
             {/*

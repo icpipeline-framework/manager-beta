@@ -24,7 +24,9 @@ const WorkerActiveConnect = (props) => {
     const myContext = useContext(AppContext);
 
     const worker = props.worker;
-    const displayLocation = props.displayLocation;
+    const displayLocation = props.displayLocation ;
+    const environmentType= props.environmentType ;
+
 
     console.log ("ListOfWorkers - Inside my ListOfWorkers");
     
@@ -63,7 +65,7 @@ const WorkerActiveConnect = (props) => {
     if (worker.publicIp && worker.category == "docker-public") {
       displayPublic = [
         <Paper key={1} elevation={2} sx={{bgcolor:"primary.superlight", p:2, mt:1, mb:1, border:"1px solid #9f9f9f"}} >
-        <WorkerIpButtons key={1} thisIp={worker.publicIp} thisTitle="Public IP" workerName={props.worker.name} displayLocation={displayLocation} iiEnabled={worker.iiEnabled} dnsName={worker.dnsName} ttydHttpsEnabled={worker.ttydHttpsEnabled} myContext={myContext} />
+        <WorkerIpButtons key={1} thisIp={worker.publicIp} thisTitle="Public IP" workerName={props.worker.name} displayLocation={displayLocation} iiEnabled={worker.iiEnabled} dnsName={worker.dnsName} ttydHttpsEnabled={worker.ttydHttpsEnabled} myContext={myContext} environmentType={environmentType} />
         </Paper>
       ] ;// end of display public
     } // end if publicIp
@@ -75,7 +77,7 @@ const WorkerActiveConnect = (props) => {
     if (worker.privateIp && worker.privateIp  != worker.publicIp) {
       displayPrivate = [
         <Paper key={1} elevation={2} sx={{bgcolor:"primary.superlight", p:2, mt:1, mb:1, border:"1px solid #9f9f9f"}} >
-        <WorkerIpButtons thisIp={worker.privateIp} thisTitle="Private IP" workerName={worker.name} displayLocation={displayLocation} iiEnabled={worker.iiEnabled} dnsName={worker.dnsName} ttydHttpsEnabled={worker.ttydHttpsEnabled} myContext={myContext} />
+        <WorkerIpButtons thisIp={worker.privateIp} thisTitle="Private IP" workerName={worker.name} displayLocation={displayLocation} iiEnabled={worker.iiEnabled} dnsName={worker.dnsName} ttydHttpsEnabled={worker.ttydHttpsEnabled} myContext={myContext} environmentType={environmentType} />
         </Paper>
       ] ;// end of display public
     } // end if publicIp
@@ -116,6 +118,8 @@ const WorkerIpButtons = (props) => {
   let displayLocation = props.displayLocation ;
   let ttydHttpsEnabled = props.ttydHttpsEnabled;
   let iiEnabled = props.iiEnabled;
+  let environmentType = props.environmentType ;
+
 
   var [sshCopyText, setSshCopyText] = useState("Copy to Clipboard");
   var [sshCopyPortsText, setSshCopyPortsText] = useState("w/ Port Forwarding");
@@ -364,6 +368,29 @@ const WorkerIpButtons = (props) => {
                     </Box> 
                     ];
 
+    if (environmentType == "STAGE" || environmentType=="PROD") {
+      httpSectionDisplay = [
+        <Box key={1} sx={{pl:2, pr:2, border:"1px solid #9f9f9f", borderRadius:2, backgroundColor:"#ffffff"}}>
+          <Typography variant="h8" sx={{
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              float: 'center',
+              borderBottom: "1px solid #9f9f9f",
+              mb:1 }}>
+          <WorkspacesIcon sx={{mr:1}}/> HTTPS
+          </Typography>
+
+          
+          {/* TODO - this should be dynamic based on whether we are forcing webpack to https */ }
+          <Typography variant="body2" sx={{fontSize: '.7rem', mb:2, mt:0}}>
+          NOTE: STAGE and PROD environments will deploy to the IC so please refer to the Deployed Canisters section of the Deployment Dashboard, or Canister Profiles in the Environment Dashboard. 
+          </Typography>
+          
+      </Box> 
+      ]
+
+    }
     var displayNote = [];
     //NOTE: for replica access, use "OPEN" buttons where available for asset canisters or SSH into the worker.
 

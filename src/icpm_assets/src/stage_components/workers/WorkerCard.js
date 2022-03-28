@@ -513,7 +513,7 @@ const WorkerCard = (props) => {
                       
                     <Grid container>
 
-                    <Grid item xs={12} >      
+                    <Grid item xs={12} sx={{display:"flex"}}>      
                         <Button onClick={() => { createIiJob()}}  variant="outlined" size="small" sx={{ ml:2, flexGrow:1, float:"right"  }}>
                           <SettingsSystemDaydreamIcon fontSize="small" sx={{mr:1 }}/> Update Internet Identity
                         </Button>

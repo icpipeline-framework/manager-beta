@@ -40,7 +40,7 @@ const ProjectCard = (props) => {
 
           <Button key={1} color="primary"  onClick={() => { props.changeStateAgent("dashboard")}} variant="contained" sx={{ mb:2, width:"100%" }}>
                 
-          <AccountTreeIcon sx={{mr:1}}/> Manage Project
+          <AccountTreeIcon sx={{mr:1}}/> Edit This Project Profile
           </Button>
         ] ;
       } else {

@@ -1,4 +1,5 @@
 import Array "mo:base/Array";
+import Buffer "mo:base/Buffer";
 import Nat "mo:base/Nat";
 import Int = "mo:base/Int";
 import Time = "mo:base/Time";
@@ -76,8 +77,20 @@ module {
         lastUpdated = now;
       }; // end newWorker declaration
 
-      // then I add a new one to the array
-      return Array.append<Worker>(theWorkers, [newWorker]);
+      // going to convert to Buffer and back as append is deprecated
+
+      let theWorkersBuffer : Buffer.Buffer<Worker> = Buffer.Buffer(theWorkers.size());
+        
+      for (x in theWorkers.vals()) {
+        
+          theWorkersBuffer.add(x);
+        
+      };
+    
+      theWorkersBuffer.add(newWorker);
+
+      return theWorkersBuffer.toArray();
+
     } else {
       // TODO
       // then I thought there was something to do and there is nothing and found nothing ... bad

@@ -1,4 +1,5 @@
 import Array "mo:base/Array";
+import Buffer "mo:base/Buffer";
 import Nat "mo:base/Nat";
 import Int = "mo:base/Int";
 import Time = "mo:base/Time";
@@ -72,7 +73,22 @@ module {
 
       // append new project to theProjects array
       // return the whole modified array to the calling frontend function
-      return Array.append<Project>(theProjectsNew, [newProject]);
+
+      // going to convert to Buffer and back as append is deprecated
+
+      let theProjectsNewBuffer : Buffer.Buffer<Project> = Buffer.Buffer(theProjectsNew.size());
+        
+      for (x in theProjectsNew.vals()) {
+        
+          theProjectsNewBuffer.add(x);
+        
+      };
+    
+      theProjectsNewBuffer.add(newProject);
+
+      return theProjectsNewBuffer.toArray();
+
+      
 
     } else {
       // TODO

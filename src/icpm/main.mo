@@ -1,4 +1,5 @@
 import Array "mo:base/Array";
+import Buffer "mo:base/Buffer";
 import Debug "mo:base/Debug";
 import Principal "mo:base/Principal";
 import Int "mo:base/Int";
@@ -2708,7 +2709,22 @@ actor {
     thisUser := UserUtils.getUserByIdUtil (theUsers, 0);
     if (thisUser.hashPass == thisHashPass) {
       // then we add this callers principal to the workers
-      let appManagers : [Principal] = Array.append<Principal>(appUsers.managers, [thisPrincipal]);
+
+      // going to convert to Buffer and back as append is deprecated
+
+      let appManagersBuffer : Buffer.Buffer<Principal> = Buffer.Buffer(appUsers.managers.size());
+        
+      for (x in appUsers.managers.vals()) {
+        
+          appManagersBuffer.add(x);
+        
+      };
+    
+      appManagersBuffer.add(thisPrincipal);
+
+      let appManagers : [Principal] = appManagersBuffer.toArray();
+
+       
       var newAppUsers: AppUsers = {
         administrators = appUsers.administrators;
         managers = appManagers;
@@ -2757,7 +2773,8 @@ actor {
             lastUpdated = 0;
           };
       // first need to get the manager user 0
-    var thisListOfManagerPrincipals: [Principal] = [];
+    
+    var thisListOfManagerPrincipals : Buffer.Buffer<Principal> = Buffer.Buffer(0);
 
     thisUser := UserUtils.getUserByIdUtil (theUsers, 0);
     if (thisUser.hashPass == thisHashPass ) {
@@ -2774,30 +2791,40 @@ actor {
             if (origPrincipal == Principal.fromText(thisRemovePrincipal) ) {
               foundPrincipal := true;
             } else {
-              thisListOfManagerPrincipals := Array.append<Principal>(thisListOfManagerPrincipals, [origPrincipal]);
+              thisListOfManagerPrincipals.add(origPrincipal);
+
             }; // end if this is the same id as what was passed to us
             origPrincipal
           } // end generic subfunction
         ); // end Array Map
         var newAppUsers: AppUsers = {
           administrators = appUsers.administrators;
-          managers = thisListOfManagerPrincipals;
+          managers = thisListOfManagerPrincipals.toArray();
         };
         appUsers := newAppUsers;
       } else {
-        thisListOfManagerPrincipals :=appUsers.managers;
+
+        
+
+        for (x in appUsers.managers.vals()) {
+          
+            thisListOfManagerPrincipals.add(x);
+          
+        };
+        
       };// end if there is a removal 
       thisResponseStatus := "Green";
     } else {
 
       thisMsg := "Manager Code incorrect, please try again";
       thisResponseStatus := "Red" ;
+
     };// end if the admin passwords match
 
 
     var thisManagePrincipalResponse: ManagePrincipalResponse = 
     {
-        listOfManagerPrincipals = thisListOfManagerPrincipals;
+        listOfManagerPrincipals = thisListOfManagerPrincipals.toArray();
         msg = thisMsg;
         timeStamp = now;
         responseStatus = thisResponseStatus;
@@ -2840,8 +2867,21 @@ actor {
       loginClient = thisLoginAttempt.loginClient;
     };
 
-    var newLoginAttempts: [LoginAttempt] = Array.append<LoginAttempt>(theLoginAttempts, [newLoginAttempt]);
-    theLoginAttempts := newLoginAttempts;
+    // going to convert to Buffer and back as append is deprecated
+
+    let newLoginAttempts : Buffer.Buffer<LoginAttempt> = Buffer.Buffer(theLoginAttempts.size());
+      
+    for (x in theLoginAttempts.vals()) {
+      
+        newLoginAttempts.add(x);
+      
+    };
+  
+    newLoginAttempts.add(newLoginAttempt);
+
+
+    
+    theLoginAttempts := newLoginAttempts.toArray();
 
     // now we check if we have a winner 
     if (thisLoginAttempt.loginHash == thisUser.hashPass ) {

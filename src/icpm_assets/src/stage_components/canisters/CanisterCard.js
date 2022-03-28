@@ -397,8 +397,8 @@ const CanisterCard = (props) => {
                   <GridCardListItem title="Last Updated" value={canister.lastUpdated}  itemType="date-icNano"/>
                   {/*
                   <GridCardListItem title="Description" value={canister.description}/>
-                  */}
                   <GridCardListItem title="dfxJson" value={canister.dfxJson}/>
+                  */}
                   <GridCardListItem title="canisterNetwork" value={canister.canisterNetwork}/>
                   <GridCardListItem title="canisterId" value={canister.canisterId}/>
                   <GridCardListItem title="identityId" value={canister.identityId.toString()}/>
@@ -422,8 +422,8 @@ const CanisterCard = (props) => {
                   <GridCardListItem title="Last Updated" value={canister.lastUpdated}  itemType="date-icNano"/>
                   {/*
                   <GridCardListItem title="Description" value={canister.description}/>
-                  */}
                   <GridCardListItem title="dfxJson" value={canister.dfxJson}/>
+                  */}
                   <GridCardListItem title="canisterNetwork" value={canister.canisterNetwork}/>
                   <GridCardListItem title="canisterId" value={canister.canisterId}/>
                   <GridCardListItem title="identityId" value={canister.identityId.toString()}/>

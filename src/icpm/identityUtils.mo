@@ -1,4 +1,5 @@
 import Array "mo:base/Array";
+import Buffer "mo:base/Buffer";
 import Nat "mo:base/Nat";
 import Int = "mo:base/Int";
 import Time = "mo:base/Time";
@@ -69,7 +70,21 @@ module {
       }; // end newIdentity declaration
 
       // then I add a new one to the array
-      return Array.append<Identity>(theIdentitys, [newIdentity]);
+
+      // going to convert to Buffer and back as append is deprecated
+
+      let theIdentitysBuffer : Buffer.Buffer<Identity> = Buffer.Buffer(theIdentitys.size());
+        
+      for (x in theIdentitys.vals()) {
+        
+          theIdentitysBuffer.add(x);
+        
+      };
+    
+      theIdentitysBuffer.add(newIdentity);
+
+      return theIdentitysBuffer.toArray();
+
     } else {
       // TODO
       // then I thought there was something to do and there is nothing and found nothing ... bad

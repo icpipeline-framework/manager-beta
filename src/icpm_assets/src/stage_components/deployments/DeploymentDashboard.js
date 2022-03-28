@@ -143,7 +143,7 @@ if (completeDeployment.responseStatus && completeDeployment.deploymentObject.id 
     workerButtons = [
       <Grid key={1} item xs={12} >
       <Box sx={{ml:1, mr:1, mb:2}}>
-      <WorkerActiveConnect worker={completeDeployment.workerObject} displayLocation="deploymentDashboard"/>
+      <WorkerActiveConnect worker={completeDeployment.workerObject} environmentType={completeDeployment.environmentObject.environmentType} displayLocation="deploymentDashboard"/>
       </Box>
       </Grid>
     ];

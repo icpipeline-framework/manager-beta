@@ -116,7 +116,7 @@ if (completeEnvironment.responseStatus ) {
 
           <Grid key={1} item xs={12} >
             <Box sx={{ml:1,mr:1, mb:1,p:0}}>
-            <WorkerActiveConnect worker={completeEnvironment.workerObject} displayLocation="environmentDashboard"/>
+            <WorkerActiveConnect environmentType={completeEnvironment.environmentObject.environmentType} worker={completeEnvironment.workerObject} displayLocation="environmentDashboard"/>
             </Box>
           </Grid>
         ];
@@ -200,7 +200,7 @@ if (completeEnvironment.responseStatus ) {
         <GetImage imgSrc="dinfinity.png"  imgAlt="Internet Identity" />
       </Box>
       <Typography variant="subtitle1" align="left" sx={{ml:0, float:'right',pl:1,pr:1,}}>
-      IC
+      --network ic
       </Typography>
       
         </Paper>

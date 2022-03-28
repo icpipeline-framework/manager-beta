@@ -406,9 +406,9 @@ const ManageEnvironmentForm = (props) => {
     if (props.theProps.activeEnvironment.id == 0) {
 
         displayEnvironmentType = [
-            <Box key={1}>
+            <Box key={1} sx={{flexGrow:1}}>
               <ShowError errorMsg={props.theProps.errorMsgCat}/>
-              <FormControl sx={{mb:2, minWidth: 120 }}>
+              <FormControl sx={{mb:2, minWidth: 120, flexGrow:1, display:"flex"}}>
                 <InputLabel id="environmentType-label">Environment Type</InputLabel>
                 <Select
                   labelId="environmentType-label"
@@ -416,6 +416,7 @@ const ManageEnvironmentForm = (props) => {
                   value={props.theProps.environmentEnvironmentTypeText}
                   label="Environment Type"
                   onChange={props.theProps.onEnvironmentEnvironmentTypeChange}
+                  sx={{mb:2, minWidth: 120, flexGrow:1 }}
                 >
                   
                   <MenuItem value={"DEV"}>DEV (deploys locally on worker)</MenuItem>
@@ -442,7 +443,7 @@ const ManageEnvironmentForm = (props) => {
 
 
       
-      <FormControl  sx={{ m:0,mt:1, p:0 }}>
+      <FormControl  sx={{ m:0,mt:1, p:0, display:"flex"}}>
       {displayEnvironmentType}
 
       <ShowError errorMsg={props.theProps.errorMsgNam}/>

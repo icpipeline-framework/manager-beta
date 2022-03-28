@@ -1,4 +1,5 @@
 import Array "mo:base/Array";
+import Buffer "mo:base/Buffer";
 import Nat "mo:base/Nat";
 import Int = "mo:base/Int";
 import Time = "mo:base/Time";
@@ -72,7 +73,22 @@ module {
       }; // end newEnvironment declaration
 
       // then I add a new one to the array
-      return Array.append<Environment>(theEnvironments, [newEnvironment]);
+      // going to convert to Buffer and back as append is deprecated
+
+      let theEnvironmentsBuffer : Buffer.Buffer<Environment> = Buffer.Buffer(theEnvironments.size());
+        
+      for (x in theEnvironments.vals()) {
+        
+          theEnvironmentsBuffer.add(x);
+        
+      };
+    
+      theEnvironmentsBuffer.add(newEnvironment);
+
+      return theEnvironmentsBuffer.toArray();
+
+      
+
     } else {
       // TODO
       // then I thought there was something to do and there is nothing and found nothing ... bad
@@ -226,9 +242,9 @@ public func getEnvironmentsByProjectIdUtil (theEnvironments : [Environment], the
     var foundEnvironments = false;
     
     // use thisEnvironment to create an empty firstUnassigned
-    var theseEnvironments: [Environment] = [];
+    
 
-
+    var theseEnvironments : Buffer.Buffer<Environment> = Buffer.Buffer(0);
  
     
       let theEnvironmentsNew: [Environment] = Array.map<Environment, Environment>(
@@ -238,7 +254,8 @@ public func getEnvironmentsByProjectIdUtil (theEnvironments : [Environment], the
           
           if (origEnvironment.projectId == theProjectId ) {
             foundEnvironments := true;
-            theseEnvironments :=  Array.append<Environment>(theseEnvironments, [origEnvironment]);
+            theseEnvironments.add (origEnvironment);
+
           }; // end if this is the same id as what was passed to us
           origEnvironment
         } // end generic subfunction
@@ -246,7 +263,7 @@ public func getEnvironmentsByProjectIdUtil (theEnvironments : [Environment], the
 
 
 
-  return theseEnvironments;
+  return theseEnvironments.toArray();
   
 };// end getEnvironmentByProjectIdUtil
 

@@ -1,4 +1,5 @@
 import Array "mo:base/Array";
+import Buffer "mo:base/Buffer";
 import Nat "mo:base/Nat";
 import Int = "mo:base/Int";
 import Time = "mo:base/Time";
@@ -76,7 +77,22 @@ module {
 
       // append new project to theDeployments array
       // return the whole modified array to the calling frontend function
-      return Array.append<Deployment>(theDeployments, [newDeployment]);
+
+      // going to convert to Buffer and back as append is deprecated
+
+      let theDeploymentsBuffer : Buffer.Buffer<Deployment> = Buffer.Buffer(theDeployments.size());
+        
+      for (x in theDeployments.vals()) {
+        
+          theDeploymentsBuffer.add(x);
+        
+      };
+    
+      theDeploymentsBuffer.add(newDeployment);
+
+      return theDeploymentsBuffer.toArray();
+
+      
 
     } else {
       // TODO
@@ -270,8 +286,9 @@ public func getDeploymentsRecent (theDeployments : [Deployment], thisHowMany: In
       // (24hrs times 60 min) in min times 60 sec per min times 1000 milli seconds per second * 1,000,000 nano seconds per milli second
       var twentyFourHoursAgo : Int = now - ((24*60) * 60 * 1000 * 1000000) ;
 
-      var theseDeployments :[Deployment] = [];
-
+      
+      var theseDeployments : Buffer.Buffer<Deployment> = Buffer.Buffer(0);
+      
       var thisDeploymentsCount : Int = theDeployments.size() ;
 
       let theDeploymentsNew: [Deployment] = Array.map<Deployment, Deployment>(
@@ -283,8 +300,7 @@ public func getDeploymentsRecent (theDeployments : [Deployment], thisHowMany: In
             
               foundDeployments := true;
               
-            
-              theseDeployments := Array.append<Deployment>(theseDeployments, [origDeployment]);
+              theseDeployments.add(origDeployment);
           }; // end if this count is < 30
             origDeployment
         } // end generic subfunction
@@ -293,7 +309,7 @@ public func getDeploymentsRecent (theDeployments : [Deployment], thisHowMany: In
     //thisCount := Int.abs(thirtyMinAgo) ;
 
 
-    return theseDeployments;
+    return theseDeployments.toArray();
     
   };// end getEventsByDeploymentId
 

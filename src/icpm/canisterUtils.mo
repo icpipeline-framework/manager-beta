@@ -1,4 +1,6 @@
 import Array "mo:base/Array";
+import Buffer "mo:base/Buffer";
+
 import Nat "mo:base/Nat";
 import Int = "mo:base/Int";
 import Time = "mo:base/Time";
@@ -82,7 +84,22 @@ module {
       }; // end newCanister declaration
 
       // then I add a new one to the array
-      return Array.append<Canister>(theCanisters, [newCanister]);
+
+      // going to convert to Buffer and back as append is deprecated
+
+      let theCanistersBuffer : Buffer.Buffer<Canister> = Buffer.Buffer(theCanisters.size());
+        
+      for (x in theCanisters.vals()) {
+        
+          theCanistersBuffer.add(x);
+        
+      };
+    
+      theCanistersBuffer.add(newCanister);
+
+      return theCanistersBuffer.toArray();
+
+
     } else {
       // TODO
       // then I thought there was something to do and there is nothing and found nothing ... bad
@@ -137,9 +154,9 @@ module {
 
 
       var foundCanisters = false;
-      var theseCanisters :[Canister] = [];
 
 
+    var theseCanisters : Buffer.Buffer<Canister> = Buffer.Buffer(0);
       
       let theCanistersNew: [Canister] = Array.map<Canister, Canister>(
         theCanisters,
@@ -148,15 +165,14 @@ module {
           
           if (origCanister.lastDeploymentId == theDeploymentId ) {
             foundCanisters := true;
-            theseCanisters :=  Array.append<Canister>(theseCanisters, [origCanister]);
+            
+            theseCanisters.add(origCanister);
           }; // end if this is the same id as what was passed to us
           origCanister
         } // end generic subfunction
       ); // end Array Map
 
-
-
-    return theseCanisters;
+    theseCanisters.toArray();
     
   };// end getCanistersByDeploymentId
 
@@ -165,8 +181,9 @@ module {
 
 
       var foundCanisters = false;
-      var theseCanisters :[Canister] = [];
+     
 
+      let theseCanisters : Buffer.Buffer<Canister> = Buffer.Buffer(0);
 
       
       let theCanistersNew: [Canister] = Array.map<Canister, Canister>(
@@ -178,13 +195,13 @@ module {
               and origCanister.projectId ==  theProjectId
               and origCanister.environmentId ==  theEnvironmentId ) {
             foundCanisters := true;
-            theseCanisters :=  Array.append<Canister>(theseCanisters, [origCanister]);
+            theseCanisters.add(origCanister);
           }; // end if this is the same id as what was passed to us
           origCanister
         } // end generic subfunction
       ); // end Array Map
 
-    return theseCanisters;
+    return theseCanisters.toArray();
     
   };// end getCanisterProfilesByProjectEnvironmentId
 
@@ -234,7 +251,21 @@ module {
       }; // end newCanister declaration
 
       // then I add a new one to the array
-      return Array.append<Canister>(theCanisters, [newCanister]);
+            // going to convert to Buffer and back as append is deprecated
+
+      let theCanistersBuffer : Buffer.Buffer<Canister> = Buffer.Buffer(theCanisters.size());
+        
+      for (x in theCanisters.vals()) {
+        
+          theCanistersBuffer.add(x);
+        
+      };
+    
+      theCanistersBuffer.add(newCanister);
+
+      return theCanistersBuffer.toArray();
+
+      
     } else {
       // TODO
       // then I thought there was something to do and there is nothing and found nothing ... bad
