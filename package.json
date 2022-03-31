@@ -69,7 +69,7 @@
     "@svgr/plugin-svgo": "^6.1.2",
     "@svgr/webpack": "^6.1.2",
     "@testing-library/jest-dom": "latest",
-    "@testing-library/react": "latest",
+    "@testing-library/react": "12.1.4",
     "@testing-library/user-event": "latest",
     "babel-loader": "^8.2.3",
     "css-select": "^4.2.0",
