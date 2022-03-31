@@ -5,6 +5,12 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+
 import 'regenerator-runtime/runtime';
 import { is } from '@babel/types';
 
@@ -85,7 +91,7 @@ const GridCardListItem = (props) => {
 
       
 
-    } else if (props.itemType == "form-text") {
+    } else if (props.itemType == "form-text" || props.itemType == "form-select") {
         
       const [formValue, setFormValue] = useState(props.value);
 
@@ -117,31 +123,70 @@ const GridCardListItem = (props) => {
 
       } // end handleOnClick
 
-      return (
-          <>
-          <Grid container spacing={0} sx={{ m:1 , borderBottom: '1px solid #9f9f9f' }}>
-            <Grid item >
+      if (props.itemType == "form-text") {
+          return (
+              <>
+              <Grid container spacing={0} sx={{ m:1 , borderBottom: '1px solid #9f9f9f' }}>
+                <Grid item >
 
-            <FormTextField 
-              onChange={handleOnChange}
-              value={formValue}
-              label={thisTitle} //optional
-              type="text"
-              helperText="Enter a new value and hit save"
-            />  
+                <FormTextField 
+                  onChange={handleOnChange}
+                  value={formValue}
+                  label={thisTitle} //optional
+                  type="text"
+                  helperText="Enter a new value and hit save"
+                />  
 
-            <Button onClick={() => { handleOnClick ()
-                                    }}  variant="outlined" sx={{ml:2, mr:2}}>save</Button>
+                <Button onClick={() => { handleOnClick ()
+                                        }}  variant="outlined" sx={{ml:2, mr:2}}>save</Button>
 
+                    
+                </Grid>
+
+                {itemNoteDisplay}
+
+                </Grid>
+            </>
                 
-            </Grid>
+          )// end return
+        } else {
+          return (
+              <>
+              <Grid container spacing={0} sx={{ m:1 , borderBottom: '1px solid #9f9f9f' }}>
+                <Grid item >
 
-            {itemNoteDisplay}
+                <FormControl sx={{mb:2, minWidth: 120 }}>
+                  <InputLabel id="canisterType-label">{thisTitle}</InputLabel>
+                  <Select
+                    labelId="canisterType-label"
+                    id="canisterType-id"
+                    value={formValue}
+                    label={thisTitle}
+                    onChange={handleOnChange}
+                  >
+                    
+                    <MenuItem value={"emulator"}>emulator</MenuItem>
+                    <MenuItem value={"replica"}>replica</MenuItem>
+                  {/* <MenuItem value={"custom"}>custom</MenuItem>*/}
+                  </Select>
+                  <FormHelperText>(Enter a new value and hit save)</FormHelperText>
+                </FormControl>
 
-            </Grid>
-        </>
-            
-      )// end return
+
+                <Button onClick={() => { handleOnClick () }}  variant="outlined" sx={{ml:2, mr:2}}>save</Button>
+
+                    
+                </Grid>
+
+                {itemNoteDisplay}
+
+                </Grid>
+            </>
+                
+          )// end return
+
+
+        }
 
 
     } else {

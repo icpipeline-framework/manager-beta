@@ -942,7 +942,7 @@ const WorkerCard = (props) => {
 
 
         var workerUpdateReplicaTypeDisplay =[
-          <GridCardListItem key={1} title="dfxReplicaType" value={completeWorker.workerObject.dfxReplicaType} itemType="form-text" itemFormHandler={handleWorkerSubmit} itemNote="This should be either 'emulator' or 'replica', and will default to 'emulator'"/> 
+          <GridCardListItem key={1} title="dfxReplicaType" value={completeWorker.workerObject.dfxReplicaType} itemType="form-select" itemFormHandler={handleWorkerSubmit} itemNote="This should be either 'emulator' or 'replica', and will default to 'emulator'"/> 
           
         ];
 
@@ -965,6 +965,8 @@ const WorkerCard = (props) => {
           
 
         } // end if pending
+        // not ready for this on the worker yet - 
+        workerUpdateReplicaTypeDisplay =[];
 
           return (
             <CardContent sx={{  borderRadius:2, width:"100%"
