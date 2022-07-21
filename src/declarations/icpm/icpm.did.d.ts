@@ -1,4 +1,6 @@
 import type { Principal } from '@dfinity/principal';
+import type { ActorMethod } from '@dfinity/agent';
+
 export interface Canister {
   'id' : bigint,
   'canisterName' : string,
@@ -421,97 +423,89 @@ export interface Worker__1 {
   'dfxReplicaType' : string,
 }
 export interface _SERVICE {
-  'addManagerPrincipalMain' : (
-      arg_0: string,
-      arg_1: string,
-      arg_2: Principal,
-    ) => Promise<LoginResponse>,
-  'authenticateMain' : (arg_0: LoginAttempt, arg_1: string) => Promise<
-      LoginResponse
-    >,
-  'checkPrincipalMain' : () => Promise<bigint>,
-  'createDeploymentMain' : (arg_0: string, arg_1: Environment__1) => Promise<
-      CreateDeploymentResponse
-    >,
-  'createIiEnableJob' : (arg_0: string, arg_1: bigint) => Promise<
-      CreateIiEnableJobResponse
-    >,
-  'getCanisterStatus' : () => Promise<CanisterStatusResponse>,
-  'getCompleteCanisterMain' : (arg_0: string, arg_1: bigint) => Promise<
-      CompleteCanisterResponse
-    >,
-  'getCompleteDashboardStats' : (arg_0: string) => Promise<
-      CompleteDashboardStats
-    >,
-  'getCompleteDeploymentMain' : (arg_0: string, arg_1: bigint) => Promise<
-      CompleteDeploymentResponse
-    >,
-  'getCompleteEnvironmentMain' : (arg_0: string, arg_1: bigint) => Promise<
-      CompleteEnvironmentResponse
-    >,
-  'getCompleteIdentityMain' : (arg_0: string, arg_1: bigint) => Promise<
-      CompleteIdentityResponse
-    >,
-  'getCompleteJobMain' : (arg_0: string, arg_1: bigint) => Promise<
-      CompleteJobResponse
-    >,
-  'getCompleteProjectMain' : (arg_0: string, arg_1: bigint) => Promise<
-      CompleteProjectResponse
-    >,
-  'getCompleteWorkerMain' : (arg_0: string, arg_1: bigint) => Promise<
-      CompleteWorkerResponse
-    >,
-  'getICPMConfigDownload' : (arg_0: string, arg_1: string) => Promise<
-      DownloadAllConfigResponse
-    >,
-  'getICPMLogDownload' : (arg_0: string, arg_1: string) => Promise<
-      DownloadAllLogResponse
-    >,
-  'getListOfCanisters' : (arg_0: string, arg_1: string) => Promise<
-      Array<Canister__1>
-    >,
-  'getListOfDeployments' : (arg_0: string, arg_1: string) => Promise<
-      Array<Deployment__1>
-    >,
-  'getListOfEnvironments' : (arg_0: string, arg_1: string) => Promise<
-      Array<Environment__1>
-    >,
-  'getListOfEvents' : (arg_0: string, arg_1: string) => Promise<Array<Event>>,
-  'getListOfIdentities' : (arg_0: string, arg_1: string) => Promise<
-      Array<Identity__1>
-    >,
-  'getListOfJobs' : (arg_0: string, arg_1: string) => Promise<Array<Job__1>>,
-  'getListOfProjects' : (arg_0: string, arg_1: string) => Promise<
-      Array<Project>
-    >,
-  'getListOfUsers' : (arg_0: string, arg_1: string) => Promise<Array<User>>,
-  'getListOfWorkers' : (arg_0: string, arg_1: string) => Promise<Array<Worker>>,
-  'manageCanisterMain' : (arg_0: string, arg_1: Canister__1) => Promise<
-      ManageCanisterResponse
-    >,
-  'manageDeploymentMain' : (arg_0: string, arg_1: Deployment__1) => Promise<
-      string
-    >,
-  'manageEnvironmentMain' : (arg_0: string, arg_1: Environment__1) => Promise<
-      ManageEnvironmentResponse
-    >,
-  'manageEventMain' : (arg_0: string, arg_1: Event) => Promise<string>,
-  'manageIdentityMain' : (arg_0: string, arg_1: Identity__1) => Promise<
-      ManageIdentityResponse
-    >,
-  'manageJobMain' : (arg_0: string, arg_1: Job__1) => Promise<string>,
-  'managePrincipalsMain' : (
-      arg_0: string,
-      arg_1: string,
-      arg_2: string,
-    ) => Promise<ManagePrincipalResponse>,
-  'manageProjectMain' : (arg_0: string, arg_1: Project) => Promise<
-      CompleteProjectResponse
-    >,
-  'manageUserMain' : (arg_0: string, arg_1: User) => Promise<string>,
-  'manageWorkerMain' : (arg_0: string, arg_1: Worker) => Promise<string>,
-  'ttydHttpsEnableDisable' : (arg_0: string, arg_1: bigint) => Promise<
-      TtydHttpsEnableDisableResponse
-    >,
-  'workerUplink' : (arg_0: string, arg_1: Worker) => Promise<UplinkResponse>,
+  'addManagerPrincipalMain' : ActorMethod<
+    [string, string, Principal],
+    LoginResponse,
+  >,
+  'authenticateMain' : ActorMethod<[LoginAttempt, string], LoginResponse>,
+  'checkPrincipalMain' : ActorMethod<[], bigint>,
+  'createDeploymentMain' : ActorMethod<
+    [string, Environment__1],
+    CreateDeploymentResponse,
+  >,
+  'createIiEnableJob' : ActorMethod<
+    [string, bigint],
+    CreateIiEnableJobResponse,
+  >,
+  'getCanisterStatus' : ActorMethod<[], CanisterStatusResponse>,
+  'getCompleteCanisterMain' : ActorMethod<
+    [string, bigint],
+    CompleteCanisterResponse,
+  >,
+  'getCompleteDashboardStats' : ActorMethod<[string], CompleteDashboardStats>,
+  'getCompleteDeploymentMain' : ActorMethod<
+    [string, bigint],
+    CompleteDeploymentResponse,
+  >,
+  'getCompleteEnvironmentMain' : ActorMethod<
+    [string, bigint],
+    CompleteEnvironmentResponse,
+  >,
+  'getCompleteIdentityMain' : ActorMethod<
+    [string, bigint],
+    CompleteIdentityResponse,
+  >,
+  'getCompleteJobMain' : ActorMethod<[string, bigint], CompleteJobResponse>,
+  'getCompleteProjectMain' : ActorMethod<
+    [string, bigint],
+    CompleteProjectResponse,
+  >,
+  'getCompleteWorkerMain' : ActorMethod<
+    [string, bigint],
+    CompleteWorkerResponse,
+  >,
+  'getICPMConfigDownload' : ActorMethod<
+    [string, string],
+    DownloadAllConfigResponse,
+  >,
+  'getICPMLogDownload' : ActorMethod<[string, string], DownloadAllLogResponse>,
+  'getListOfCanisters' : ActorMethod<[string, string], Array<Canister__1>>,
+  'getListOfDeployments' : ActorMethod<[string, string], Array<Deployment__1>>,
+  'getListOfEnvironments' : ActorMethod<
+    [string, string],
+    Array<Environment__1>,
+  >,
+  'getListOfEvents' : ActorMethod<[string, string], Array<Event>>,
+  'getListOfIdentities' : ActorMethod<[string, string], Array<Identity__1>>,
+  'getListOfJobs' : ActorMethod<[string, string], Array<Job__1>>,
+  'getListOfProjects' : ActorMethod<[string, string], Array<Project>>,
+  'getListOfUsers' : ActorMethod<[string, string], Array<User>>,
+  'getListOfWorkers' : ActorMethod<[string, string], Array<Worker>>,
+  'manageCanisterMain' : ActorMethod<
+    [string, Canister__1],
+    ManageCanisterResponse,
+  >,
+  'manageDeploymentMain' : ActorMethod<[string, Deployment__1], string>,
+  'manageEnvironmentMain' : ActorMethod<
+    [string, Environment__1],
+    ManageEnvironmentResponse,
+  >,
+  'manageEventMain' : ActorMethod<[string, Event], string>,
+  'manageIdentityMain' : ActorMethod<
+    [string, Identity__1],
+    ManageIdentityResponse,
+  >,
+  'manageJobMain' : ActorMethod<[string, Job__1], string>,
+  'managePrincipalsMain' : ActorMethod<
+    [string, string, string],
+    ManagePrincipalResponse,
+  >,
+  'manageProjectMain' : ActorMethod<[string, Project], CompleteProjectResponse>,
+  'manageUserMain' : ActorMethod<[string, User], string>,
+  'manageWorkerMain' : ActorMethod<[string, Worker], string>,
+  'ttydHttpsEnableDisable' : ActorMethod<
+    [string, bigint],
+    TtydHttpsEnableDisableResponse,
+  >,
+  'workerUplink' : ActorMethod<[string, Worker], UplinkResponse>,
 }
