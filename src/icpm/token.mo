@@ -1,6 +1,6 @@
 module {
   public func getApiToken() : Text {
-    let apiKey: Text = "icpl_0db68ebdc59b7798c7d196e9f048ce9703f76d77c7";
+    let apiKey: Text = "icpl_0ff280319299beb1c5422acb3e419981f466bd304f";
     return apiKey;
   } // end func
 } // end module
